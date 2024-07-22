@@ -1,0 +1,10 @@
+{
+  "name": "beta",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Alice Huang",
+  "license": "MIT",
+  "scripts": {
+    "start-game": "tsc game.ts --outDir dist && node dist/game.js"
+  }
+}
