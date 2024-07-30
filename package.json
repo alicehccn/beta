@@ -5,6 +5,6 @@
   "author": "Alice Huang",
   "license": "MIT",
   "scripts": {
-    "start-game": "tsc main.ts --outDir dist && node dist/main.js"
+    "game": "tsc main.ts --outDir dist && node dist/main.js"
   }
 }
