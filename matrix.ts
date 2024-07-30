@@ -1,20 +1,23 @@
-import { History, Move } from "./moves";
+import { History } from "./history";
+import { Move } from "./moves";
 
 const players = {
   0: '⚫',
   1: '⚪',
 }
 
-const history = new History();
 
 
 export class Matrix {
   size: number;
   rows: string[][];
+  history: History;
 
   constructor (size: number) {
     this.size = size;
     this.rows = [];
+    this.history = new History();
+
     this.initalize();
   }
 
@@ -30,22 +33,22 @@ export class Matrix {
   }
 
   public getPosition (x: number, y: number) {
-    return this.rows[x-1][y]
+    return this.rows[x-1][y];
   }
 
   public makeMove (move: Move) {
     this.rows[move.x-1][move.y] = players[move.player];
-    history.add(move);
+    this.history.add(move);
   }
 
   public printView () {
     for (let i = 0; i < this.size; i++) {
-      process.stdout.write(JSON.stringify(this.rows[i]) + '\n\n')
+      process.stdout.write(JSON.stringify(this.rows[i]) + '\n\n');
     }
   }
 
   public printHistory() {
-    history.print()
+    this.history.print();
   }
 
   private rotate90 () {
@@ -53,7 +56,7 @@ export class Matrix {
     for (let i = this.size - 1; i >= 0; i--) {
       const tempRow: string[] = []
       for (let j = this.size; j >= 0; j--) {
-        tempRow.push(this.rows[i][j])
+        tempRow.push(this.rows[i][j]);
       }
       tempRows.push(tempRow);
     }
