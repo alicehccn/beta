@@ -4,13 +4,17 @@ import { Move } from "./moves";
 
 function main () {
   const game = new Matrix(9);
-  game.makeMove(new Move(0, 5, 4));
-  game.makeMove(new Move(1, 5, 5));
-  game.makeMove(new Move(0, 6, 6));
-  game.makeMove(new Move(1, 4, 3));
-  game.makeMove(new Move(0, 7, 7));
-  game.makeMove(new Move(1, 8, 3));
-  game.makeMove(new Move(0, 8, 7));
+  game.go(new Move('7h'));
+  game.go(new Move('6h'));
+  game.go(new Move('7g'));
+  game.go(new Move('6g'));
+  game.go(new Move('8h'));
+  game.go(new Move('7f'));
+  game.go(new Move('2b'));
+  game.go(new Move('8f'));
+  game.go(new Move('2h'));
+  game.go(new Move('8g'));
+
   game.printView();
   game.printHistory();
 }

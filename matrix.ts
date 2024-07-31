@@ -1,11 +1,6 @@
+import { Players } from "./constant";
 import { History } from "./history";
 import { Move } from "./moves";
-
-const players = {
-  0: '⚫',
-  1: '⚪',
-}
-
 
 
 export class Matrix {
@@ -33,12 +28,9 @@ export class Matrix {
     this.printView();
   }
 
-  public getPosition (x: number, y: number) {
-    return this.rows[x-1][y];
-  }
-
-  public makeMove (move: Move) {
-    this.rows[move.x-1][move.y] = players[move.player];
+  public go (move: Move) {
+    const [x, y] = this.getPosition(move);
+    this.rows[x-1][y] = Players[this.history.player];
     this.history.add(move);
   }
 
@@ -66,6 +58,13 @@ export class Matrix {
   }
 
   private numToString (char: number): string {
-    return String.fromCharCode(char + 65);
+    return String.fromCharCode(char + 65).toUpperCase();
+  }
+
+  private getPosition(move: Move): number[] {
+    const x = parseInt(move.name);
+    const temp = move.name.split('')[move.name.length - 1];
+    const y = temp.charCodeAt(0) - 65
+    return [x, y]
   }
 }
