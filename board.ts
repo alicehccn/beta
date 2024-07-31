@@ -1,22 +1,25 @@
 import { Players } from "./constant";
 import { History } from "./history";
-import { Move } from "./moves";
+import { Move } from "./move";
+
 
 
 export class Board {
   size: number;
   rows: string[][];
   history: History;
+  groups: number[][];
 
   constructor (size: number) {
     this.size = size;
     this.rows = [];
+    this.groups = [];
     this.history = new History();
 
     this.initalize();
   }
 
-  private initalize () {
+  private initalize (): void {
     for (let i = 1; i < this.size+1; i++) {
       const row: string[] = [];
       for (let j = 0; j < this.size; j++) {
@@ -28,43 +31,35 @@ export class Board {
     this.printView();
   }
 
-  public go (move: Move) {
-    const [x, y] = this.getPosition(move);
+  public go (move: Move): void {
+    const [x, y] = move.setPoint(move);
     this.rows[x-1][y] = Players[this.history.player];
     this.history.add(move);
   }
 
-  public printView () {
-    console.log('------------------------------------')
+  public printRow (row: number[]): void {
     for (let i = 0; i < this.size; i++) {
-      process.stdout.write(JSON.stringify(this.rows[i].join('  ')) + '\n\n');
+      process.stdout.write(JSON.stringify(row.join('  ')) + '\n\n');
     }
   }
 
-  public printHistory() {
+  public printHistory(): void {
     this.history.print();
   }
 
-  private rotate90 () {
-    const tempRows: string[][] = [];
-    for (let i = this.size - 1; i >= 0; i--) {
-      const tempRow: string[] = [];
-      for (let j = this.size; j >= 0; j--) {
-        tempRow.push(this.rows[i][j]);
+  public printView (): void {
+    process.stdout.write('------------------------------------\n');
+    for (let i = this.size - 1 ; i >= 0; i--) {
+      process.stdout.write(JSON.stringify(this.rows[i]?.join('  ')) + '\n\n');
+      if (i === 0) {
+        process.stdout.write('------------------------------------\n');
       }
-      tempRows.push(tempRow);
     }
-    this.rows = tempRows;
+    process.stdout.write(`Next player: ${Players[this.history.getNextPlayer()]}\n\n`);
   }
 
   private numToString (char: number): string {
     return String.fromCharCode(char + 65).toUpperCase();
   }
 
-  private getPosition(move: Move): number[] {
-    const x = parseInt(move.name);
-    const temp = move.name.split('')[move.name.length - 1];
-    const y = temp.charCodeAt(0) - 65
-    return [x, y]
-  }
 }

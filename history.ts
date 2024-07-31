@@ -1,5 +1,5 @@
 import { Players } from "./constant";
-import { Move } from "./moves";
+import { Move } from "./move";
 
 export class History {
   moves: Move[];
@@ -15,7 +15,7 @@ export class History {
   public add (move: Move) {
     this.moves.push(move);
     this.size += 1;
-    this.player = this.getPlayer(this.size);
+    this.player = this.getNextPlayer();
   }
 
   public getPrev () {
@@ -32,8 +32,7 @@ export class History {
     this.moves = [];
   }
   
-  public getPlayer (num: number) {
-    return num % 2 === 0 ? 0 : 1;
+  public getNextPlayer () {
+    return this.size % 2 === 0 ? 0 : 1;
   }
-
 }

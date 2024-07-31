@@ -1,5 +1,5 @@
 import { Board } from "./board";
-import { Move } from "./moves";
+import { Move } from "./move";
 
 
 function main () {
@@ -14,6 +14,8 @@ function main () {
   game.go(new Move('8f'));
   game.go(new Move('2h'));
   game.go(new Move('8g'));
+  game.go(new Move('5E'));
+  game.go(new Move('9h'));
 
   game.printView();
 }
