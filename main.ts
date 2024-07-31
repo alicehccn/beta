@@ -1,9 +1,9 @@
-import { Matrix } from "./matrix";
+import { Board } from "./board";
 import { Move } from "./moves";
 
 
 function main () {
-  const game = new Matrix(9);
+  const game = new Board(9);
   game.go(new Move('7h'));
   game.go(new Move('6h'));
   game.go(new Move('7g'));
@@ -16,7 +16,6 @@ function main () {
   game.go(new Move('8g'));
 
   game.printView();
-  game.printHistory();
 }
 
 main();

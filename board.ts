@@ -3,7 +3,7 @@ import { History } from "./history";
 import { Move } from "./moves";
 
 
-export class Matrix {
+export class Board {
   size: number;
   rows: string[][];
   history: History;
