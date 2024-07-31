@@ -23,13 +23,14 @@ export class Matrix {
 
   private initalize () {
     for (let i = 1; i < this.size+1; i++) {
-      const row: string[] = []
-      for (let j = 0; j < this.size+1; j++) {
+      const row: string[] = [];
+      for (let j = 0; j < this.size; j++) {
         const index = i + '' + this.numToString(j);
         row.push(index);
       }
-      this.rows.push(row)
+      this.rows.push(row);
     }
+    this.printView();
   }
 
   public getPosition (x: number, y: number) {
@@ -42,8 +43,9 @@ export class Matrix {
   }
 
   public printView () {
+    console.log('------------------------------------')
     for (let i = 0; i < this.size; i++) {
-      process.stdout.write(JSON.stringify(this.rows[i]) + '\n\n');
+      process.stdout.write(JSON.stringify(this.rows[i].join('  ')) + '\n\n');
     }
   }
 
@@ -54,7 +56,7 @@ export class Matrix {
   private rotate90 () {
     const tempRows: string[][] = [];
     for (let i = this.size - 1; i >= 0; i--) {
-      const tempRow: string[] = []
+      const tempRow: string[] = [];
       for (let j = this.size; j >= 0; j--) {
         tempRow.push(this.rows[i][j]);
       }
