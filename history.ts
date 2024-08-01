@@ -1,4 +1,3 @@
-import { Players } from "./constant";
 import { Move } from "./move";
 
 export class History {
