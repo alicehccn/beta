@@ -1,4 +1,3 @@
-
 type Point = number[];
 
 export class Move {
@@ -10,15 +9,10 @@ export class Move {
     this.point = point;
   }
 
-  public getPoint (move: Move): Point {
-    const x = parseInt(move.name);
-    const temp = move.name.split('')[move.name.length - 1];
+  public getPoint (name: string): Point {
+    const x = parseInt(name);
+    const temp = name.split('')[name.length - 1];
     const y = temp.charCodeAt(0) - 65;
     return [x - 1, y];
-  }
-
-  public setPoint (move: Move) {
-    this.point = this.getPoint(move);
-    return this.point
   }
 }

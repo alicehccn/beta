@@ -32,19 +32,13 @@ export class Board {
   }
 
   public go (move: Move): void {
-    const [x, y] = move.setPoint(move);
-    if (Players.includes(this.rows[x][y])) {
-      console.log(`${move.name} has been played!`)
+    const [x, y] = move.getPoint(move.name);
+    const isValid = this.validateMove(move, [x, y])
+    if(!isValid) {
       return;
     }
     this.rows[x][y] = Players[this.history.player];
     this.history.add(move);
-  }
-
-  public printRow (row: number[]): void {
-    for (let i = 0; i < this.size; i++) {
-      process.stdout.write(JSON.stringify(row.join('  ')) + '\n\n');
-    }
   }
 
   public printHistory (): void {
@@ -68,4 +62,11 @@ export class Board {
     return String.fromCharCode(char + 65).toUpperCase();
   }
 
+  private validateMove (move: Move, [x, y]): boolean {
+    if (Players.includes(this.rows[x][y])) {
+      console.log(`${move.name} has been played!`)
+      return false;
+    }
+    return true;
+  }
 }
