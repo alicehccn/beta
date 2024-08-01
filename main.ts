@@ -24,6 +24,7 @@ function main () {
   game.go(new Move('5g'));
 
   game.printView();
+  game.printHistory();
 }
 
 main();

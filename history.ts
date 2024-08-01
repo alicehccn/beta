@@ -1,7 +1,7 @@
 import { Move } from "./move";
 
 export class History {
-  moves: Move[];
+  moves: string[];
   size: number;
   player: number;
 
@@ -11,7 +11,7 @@ export class History {
     this.player = 0;
   }
 
-  public add (move: Move) {
+  public add (move: string) {
     this.moves.push(move);
     this.size += 1;
     this.player = this.getNextPlayer();
@@ -23,7 +23,7 @@ export class History {
   
   public print () {
     this.moves.forEach((move, i) => {
-      console.log(move);
+      process.stdout.write(`${move} ${i === this.size - 1 ? '\n\n' : '-> '}`);
     })
   }
 

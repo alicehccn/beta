@@ -38,7 +38,7 @@ export class Board {
       return;
     }
     this.rows[x][y] = Players[this.history.player];
-    this.history.add(move);
+    this.history.add(move.name);
   }
 
   public printHistory (): void {
@@ -64,7 +64,6 @@ export class Board {
 
   private validateMove (move: Move, [x, y]): boolean {
     if (Players.includes(this.rows[x][y])) {
-      console.log(`${move.name} has been played!`)
       return false;
     }
     return true;
