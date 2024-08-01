@@ -8,12 +8,10 @@ export class Board {
   size: number;
   rows: string[][];
   history: History;
-  groups: number[][];
 
   constructor (size: number) {
     this.size = size;
     this.rows = [];
-    this.groups = [];
     this.history = new History();
 
     this.initalize();
@@ -33,11 +31,11 @@ export class Board {
 
   public go (move: Move): void {
     const [x, y] = move.getPoint(move.name);
-    const isValid = this.validateMove(move, [x, y])
+    const isValid = this.validateMove(x, y)
     if(!isValid) {
       return;
     }
-    this.rows[x][y] = Players[this.history.player];
+    this.rows[x][y] = Players[this.history.next];
     this.history.add(move.name);
   }
 
@@ -62,7 +60,7 @@ export class Board {
     return String.fromCharCode(char + 65).toUpperCase();
   }
 
-  private validateMove (move: Move, [x, y]): boolean {
+  private validateMove (x: number, y: number): boolean {
     if (Players.includes(this.rows[x][y])) {
       return false;
     }

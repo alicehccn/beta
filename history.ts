@@ -3,18 +3,19 @@ import { Move } from "./move";
 export class History {
   moves: string[];
   size: number;
-  player: number;
+  next: number;
 
-  constructor() {
+
+  constructor () {
     this.moves = [];
     this.size = 0;
-    this.player = 0;
+    this.next = 0;
   }
 
   public add (move: string) {
     this.moves.push(move);
     this.size += 1;
-    this.player = this.getNextPlayer();
+    this.next = this.getNextPlayer();
   }
 
   public getPrev () {
