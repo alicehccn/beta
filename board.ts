@@ -31,7 +31,7 @@ export class Board {
 
   public go (move: Move): void {
     const [x, y] = move.getPoint(move.name);
-    const isValid = this.validateMove(x, y)
+    const isValid = this.validateMove(x, y);
     if(!isValid) {
       return;
     }
@@ -45,7 +45,7 @@ export class Board {
 
   public printView (): void {
     process.stdout.write('------------------------------------\n');
-    for (let i = this.size - 1 ; i >= 0; i--) {
+    for (let i = this.size - 1; i >= 0; i--) {
       process.stdout.write(JSON.stringify(this.rows[i]?.join('  ')) + '\n');
       if (i === 0) {
         process.stdout.write('------------------------------------\n');
