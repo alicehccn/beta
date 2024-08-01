@@ -14,11 +14,11 @@ export class Move {
     const x = parseInt(move.name);
     const temp = move.name.split('')[move.name.length - 1];
     const y = temp.charCodeAt(0) - 65;
-    return [x, y];
+    return [x - 1, y];
   }
 
-  public setPoint (move: Move): Point {
+  public setPoint (move: Move) {
     this.point = this.getPoint(move);
-    return this.point;
+    return this.point
   }
 }

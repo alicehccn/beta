@@ -33,7 +33,11 @@ export class Board {
 
   public go (move: Move): void {
     const [x, y] = move.setPoint(move);
-    this.rows[x-1][y] = Players[this.history.player];
+    if (Players.includes(this.rows[x][y])) {
+      console.log(`${move.name} has been played!`)
+      return;
+    }
+    this.rows[x][y] = Players[this.history.player];
     this.history.add(move);
   }
 
