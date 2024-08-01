@@ -43,16 +43,18 @@ export class Board {
     }
   }
 
-  public printHistory(): void {
+  public printHistory (): void {
     this.history.print();
   }
 
   public printView (): void {
     process.stdout.write('------------------------------------\n');
     for (let i = this.size - 1 ; i >= 0; i--) {
-      process.stdout.write(JSON.stringify(this.rows[i]?.join('  ')) + '\n\n');
+      process.stdout.write(JSON.stringify(this.rows[i]?.join('  ')) + '\n');
       if (i === 0) {
         process.stdout.write('------------------------------------\n');
+      } else {
+        process.stdout.write('\n');
       }
     }
     process.stdout.write(`Next player: ${Players[this.history.getNextPlayer()]}\n\n`);
