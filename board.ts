@@ -1,8 +1,7 @@
 import { Players } from "./constant";
+import { charCodeToSTring } from "./helpers";
 import { History } from "./history";
-import { Move } from "./move";
-
-
+import { Place } from "./place";
 
 export class Board {
   size: number;
@@ -21,7 +20,7 @@ export class Board {
     for (let i = 1; i < this.size+1; i++) {
       const row: string[] = [];
       for (let j = 0; j < this.size; j++) {
-        const index = i + '' + this.numToString(j);
+        const index = i + '' + charCodeToSTring(j);
         row.push(index);
       }
       this.rows.push(row);
@@ -29,14 +28,14 @@ export class Board {
     this.printView();
   }
 
-  public go (move: Move): void {
-    const [x, y] = move.getPoint(move.name);
-    const isValid = this.validateMove(x, y);
-    if(!isValid) {
+  public go (place: Place): void {
+    const [x, y] = place.getPoint(place.label);
+    const isValid = this.validatePoint(x, y);
+    if (!isValid) {
       return;
     }
     this.rows[x][y] = Players[this.history.next];
-    this.history.add(move.name);
+    this.history.add(place.label);
   }
 
   public printHistory (): void {
@@ -56,11 +55,7 @@ export class Board {
     process.stdout.write(`Next player: ${Players[this.history.getNextPlayer()]}\n\n`);
   }
 
-  private numToString (char: number): string {
-    return String.fromCharCode(char + 65).toUpperCase();
-  }
-
-  private validateMove (x: number, y: number): boolean {
+  private validatePoint (x: number, y: number): boolean {
     if (Players.includes(this.rows[x][y])) {
       return false;
     }

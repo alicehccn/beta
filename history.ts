@@ -1,35 +1,33 @@
-import { Move } from "./move";
-
 export class History {
-  moves: string[];
+  steps: string[];
   size: number;
   next: number;
 
 
   constructor () {
-    this.moves = [];
+    this.steps = [];
     this.size = 0;
     this.next = 0;
   }
 
-  public add (move: string) {
-    this.moves.push(move);
+  public add (step: string) {
+    this.steps.push(step);
     this.size += 1;
     this.next = this.getNextPlayer();
   }
 
   public getPrev () {
-    return this.moves.pop();
+    return this.steps.pop();
   }
   
   public print () {
-    this.moves.forEach((move, i) => {
-      process.stdout.write(`${move} ${i === this.size - 1 ? '\n\n' : '-> '}`);
+    this.steps.forEach((step, i) => {
+      process.stdout.write(`${step} ${i === this.size - 1 ? '\n\n' : '-> '}`);
     })
   }
 
   public reset () {
-    this.moves = [];
+    this.steps = [];
   }
   
   public getNextPlayer () {
