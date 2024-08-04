@@ -6,5 +6,8 @@
   "license": "MIT",
   "scripts": {
     "game": "tsc main.ts --outDir dist && node dist/main.js"
+  },
+  "devDependencies": {
+    "prettier": "3.3.3"
   }
 }

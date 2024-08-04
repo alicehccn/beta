@@ -1,5 +1,1 @@
-export const Players = [
-   '⚫',
-   '⚪',
-]
-
+export const Players = ["⚫", "⚪"];
