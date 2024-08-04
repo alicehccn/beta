@@ -1,1 +1,6 @@
-export const Players = ["⚫", "⚪"];
+export const Players = ['⚫', '⚪']
+
+export enum Color {
+    '⚫',
+    '⚪',
+}
