@@ -1,5 +1,5 @@
 import { Players } from "./constant";
-import { charCodeToSTring } from "./helpers";
+import { charCodeToString } from "./helpers";
 import { History } from "./history";
 import { Place } from "./place";
 
@@ -20,7 +20,7 @@ export class Board {
     for (let i = 1; i < this.size+1; i++) {
       const row: string[] = [];
       for (let j = 0; j < this.size; j++) {
-        const index = i + '' + charCodeToSTring(j);
+        const index = i + '' + charCodeToString(j);
         row.push(index);
       }
       this.rows.push(row);

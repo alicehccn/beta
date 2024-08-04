@@ -1,36 +1,30 @@
-import { charCodeToSTring } from "./helpers";
+import { charCodeToString } from "./helpers";
 
 type Point = number[];
 
 export class Place {
   label: string;
-  point?: Point;
+  point: Point;
   north?: string;
   east?: string;
   south?: string;
   west?: string;
 
-  constructor (label: string, point?: Point) {
+  constructor (label: string) {
     this.label = label.toUpperCase();
-    this.point = point;
+    this.point = this.getPoint(label);
   }
 
-  public getPoint (name: string): Point {
-    const x = parseInt(name);
-    const temp = name.split('')[name.length - 1];
+  public getPoint (label: string): Point {
+    const x = parseInt(label);
+    const temp = label.split('')[label.length - 1];
     const y = temp.charCodeAt(0) - 65;
     return [x - 1, y];
   }
 
   public getLabel (point: Point): string | undefined {
     const [x, y] = point || [];
-    if (x < 0 || x >= 9) {
-      return;
-    } 
-    return `${x}${charCodeToSTring(y)}`;
-  }
-
-  public findAdjacents (label: string) {
+    return `${x}${charCodeToString(y)}`;
   }
 
   public findNorth () {
