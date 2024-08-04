@@ -1,10 +1,8 @@
 import { charCodeToString } from "./helpers";
 
-type Point = number[];
-
-export class Place {
+export class Point {
   label: string;
-  point: Point;
+  point: number[];
   north?: string;
   east?: string;
   south?: string;
@@ -15,14 +13,14 @@ export class Place {
     this.point = this.getPoint(label);
   }
 
-  public getPoint(label: string): Point {
+  public getPoint(label: string): number[] {
     const x = parseInt(label);
     const temp = label.split("")[label.length - 1];
     const y = temp.charCodeAt(0) - 65;
     return [x - 1, y];
   }
 
-  public getLabel(point: Point): string | undefined {
+  public getLabel(point: number[]): string | undefined {
     const [x, y] = point || [];
     return `${x}${charCodeToString(y)}`;
   }

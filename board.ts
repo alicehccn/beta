@@ -1,7 +1,7 @@
 import { Players } from "./constant";
 import { charCodeToString } from "./helpers";
 import { History } from "./history";
-import { Place } from "./place";
+import { Point } from "./point";
 
 export class Board {
   size: number;
@@ -28,7 +28,7 @@ export class Board {
     this.printView();
   }
 
-  public go(place: Place): void {
+  public go(place: Point): void {
     const [x, y] = place.getPoint(place.label);
     const isValid = this.validatePoint(x, y);
     if (!isValid) {
