@@ -1,4 +1,4 @@
-import { charCodeToString } from './helpers'
+import { charToString, strToChar } from './helpers'
 
 export class Point {
   label: string
@@ -15,14 +15,13 @@ export class Point {
 
   public getPoint(label: string): number[] {
     const x = parseInt(label)
-    const temp = label.split('')[label.length - 1]
-    const y = temp.charCodeAt(0) - 65
+    const y = strToChar(label)
     return [x - 1, y]
   }
 
   public getLabel(point: number[]): string | undefined {
     const [x, y] = point || []
-    return `${x}${charCodeToString(y)}`
+    return `${x}${charToString(y)}`
   }
 
   public findNorth() {

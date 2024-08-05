@@ -1,7 +1,7 @@
-import { Color, Players } from './constant'
-import { charCodeToString } from './helpers'
+import { Players } from './constant'
+import { charToString } from './helpers'
 import { History } from './history'
-import { Player } from './player'
+import { Player, Role } from './player'
 import { Point } from './point'
 
 export class Board {
@@ -14,7 +14,7 @@ export class Board {
     this.size = size
     this.rows = []
     this.history = new History()
-    this.players = [new Player(Color['⚫']), new Player(Color['⚪'])]
+    this.players = [new Player(Role['⚫']), new Player(Role['⚪'])]
 
     this.initalize()
   }
@@ -23,7 +23,7 @@ export class Board {
     for (let i = 1; i < this.size + 1; i++) {
       const row: string[] = []
       for (let j = 0; j < this.size; j++) {
-        const index = i + '' + charCodeToString(j)
+        const index = i + '' + charToString(j)
         row.push(index)
       }
       this.rows.push(row)

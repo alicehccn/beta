@@ -1,16 +1,16 @@
 export class Player {
-  color: Color
+  role: Role
   stones: string[]
   groups: string[][]
 
-  constructor(color: Color) {
-    this.color = color
+  constructor(role: Role) {
+    this.role = role
     this.stones = []
     this.groups = []
   }
 }
 
-enum Color {
+export enum Role {
   '⚫',
   '⚪',
 }
