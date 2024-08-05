@@ -1,3 +1,5 @@
+import { Role } from "./player"
+
 export class History {
   steps: string[]
   size: number
@@ -6,7 +8,7 @@ export class History {
   constructor() {
     this.steps = []
     this.size = 0
-    this.next = 0
+    this.next = this.getNextPlayer()
   }
 
   public add(step: string) {

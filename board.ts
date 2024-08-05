@@ -14,7 +14,7 @@ export class Board {
     this.size = size
     this.rows = []
     this.history = new History()
-    this.players = [new Player(Role['⚫']), new Player(Role['⚪'])]
+    this.players = []
 
     this.initalize()
   }
@@ -28,17 +28,18 @@ export class Board {
       }
       this.rows.push(row)
     }
+    this.players = [new Player(Role['⚫']), new Player(Role['⚪'])]
     this.printView()
   }
 
-  public go(place: Point): void {
-    const [x, y] = place.getPoint(place.label)
+  public go(point: Point): void {
+    const [x, y] = point.getPoint(point.label)
     const isValid = this.validatePoint(x, y)
     if (!isValid) {
       return
     }
-    this.rows[x][y] = Players[this.history.next]
-    this.history.add(place.label)
+    this.rows[x][y] = this.players[this.history.next].role
+    this.history.add(point.label)
   }
 
   public printHistory(): void {
@@ -56,11 +57,12 @@ export class Board {
       }
     }
     process.stdout.write(
-      `Next player: ${Players[this.history.getNextPlayer()]}\n\n`
+      `Next player: ${this.players[this.history.next]}\n\n`
     )
   }
 
   private validatePoint(x: number, y: number): boolean {
+    // todo: decouple this constant
     if (Players.includes(this.rows[x][y])) {
       return false
     }

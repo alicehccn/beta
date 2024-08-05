@@ -1,3 +1,8 @@
+export enum Role {
+  '⚫' = '⚫',
+  '⚪' = '⚪',
+}
+
 export class Player {
   role: Role
   stones: string[]
@@ -10,7 +15,4 @@ export class Player {
   }
 }
 
-export enum Role {
-  '⚫',
-  '⚪',
-}
+
