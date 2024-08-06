@@ -33,11 +33,11 @@ export class Board {
   }
 
   public go(point: Point): void {
+    const player = this.players[this.history.next]
+    const conn = this.findAdjacents(point)
+    player.findConn(point.label, conn)
+
     const [x, y] = point.getPoint(point.label)
-    const isValid = this.validatePoint(x, y)
-    if (!isValid) {
-      return
-    }
     this.rows[x][y] = this.players[this.history.next].role
     this.history.add(point.label)
   }
@@ -57,15 +57,11 @@ export class Board {
       }
     }
     process.stdout.write(
-      `Next player: ${this.players[this.history.next]}\n\n`
+      `Next player: ${this.players[this.history.next].role}\n\n`
     )
   }
 
-  private validatePoint(x: number, y: number): boolean {
-    // todo: decouple this constant
-    if (Players.includes(this.rows[x][y])) {
-      return false
-    }
-    return true
+  public findAdjacents(point: Point): string[] {
+    return []
   }
 }

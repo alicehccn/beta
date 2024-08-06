@@ -1,4 +1,4 @@
-import { Role } from "./player"
+import { Role } from './player'
 
 export class History {
   steps: string[]
