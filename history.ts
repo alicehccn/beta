@@ -17,10 +17,6 @@ export class History {
     this.next = this.getNextPlayer()
   }
 
-  public getPrev() {
-    return this.steps.pop()
-  }
-
   public print() {
     this.steps.forEach((step, i) => {
       process.stdout.write(`${step} ${i === this.size - 1 ? '\n\n' : '-> '}`)

@@ -19,11 +19,11 @@ export class Player {
   public findConn(point: string, conn: string[]) {
     const partner = this.findPair(point, conn)
     if (!partner) {
-      const group = this.findGroup(point, conn)
+      this.findGroup(point, conn)
     }
   }
 
-  public findGroup(point: string, conn: string[]) {
+  private findGroup(point: string, conn: string[]) {
     let group: string[]
     for (let i = 0; i < this.groups.length; i++) {
       for (let j = 0; j < conn.length; j++) {
@@ -36,7 +36,7 @@ export class Player {
     }
   }
 
-  public findPair(point: string, conn: string[]): string {
+  private findPair(point: string, conn: string[]): string {
     let partner: string = ''
     for (let i = 0; i < conn.length; i++) {
       const index = this.stones.indexOf(conn[i])
