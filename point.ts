@@ -3,10 +3,6 @@ import { charToString, strToChar } from './helpers'
 export class Point {
   label: string
   point: number[]
-  north?: string
-  east?: string
-  south?: string
-  west?: string
 
   constructor(label: string) {
     this.label = label.toUpperCase()
@@ -19,28 +15,37 @@ export class Point {
     return [x - 1, y]
   }
 
-  public getLabel(point: number[]): string | undefined {
+  public getLabel(point: number[]): string {
     const [x, y] = point || []
     return `${x}${charToString(y)}`
   }
 
-  public findNorth() {
+  public findNorth(): string {
     const [x, y] = this.point || []
-    this.north = this.getLabel([x + 1, y])
+    return this.getLabel([x + 1, y])
   }
 
   public findEast() {
     const [x, y] = this.point || []
-    this.east = this.getLabel([x, y + 1])
+    return this.getLabel([x, y + 1])
   }
 
   public findSouth() {
     const [x, y] = this.point || []
-    this.south = this.getLabel([x - 1, y])
+    return this.getLabel([x - 1, y])
   }
 
   public findWest() {
     const [x, y] = this.point || []
-    this.south = this.getLabel([x, y - 1])
+    return this.getLabel([x, y - 1])
+  }
+
+  public findAdjacents(point: Point): string[] {
+    const north = point.findNorth()
+    const east = point.findEast()
+    const south = point.findSouth()
+    const west = point.findWest()
+
+    return [north, east, south, west].filter((n) => n)
   }
 }

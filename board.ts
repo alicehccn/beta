@@ -33,10 +33,11 @@ export class Board {
   }
 
   public go(point: Point): void {
-    const conn = this.findAdjacents(point)
-    this.players[this.history.next].findConn(point.label, conn)
+    const conn = point.findAdjacents(point)
+    if (conn.length > 0) {
+      this.players[this.history.next].findConn(point.label, conn)
+    }
     this.placeStone(point.point)
-    // revalidate groups?
     this.history.add(point.label)
   }
 
@@ -57,10 +58,6 @@ export class Board {
     process.stdout.write(
       `Next player: ${this.players[this.history.next].role}\n\n`
     )
-  }
-
-  public findAdjacents(point: Point): string[] {
-    return []
   }
 
   public placeStone(point: number[]) {
